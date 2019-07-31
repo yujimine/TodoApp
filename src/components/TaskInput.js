@@ -2,13 +2,9 @@ import React from 'react';
 import { FormControl, InputLabel, Input, FormHelperText, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-    
-const addTask = (task) => {
-  return {
-    type: 'ADD_TODO',
-    task
-  };
-}
+import TaskList from './TaskList';
+import ListHead from './ListHead';
+
 
 class TaskInput extends React.Component {
   constructor(props){
@@ -16,7 +12,6 @@ class TaskInput extends React.Component {
     this.state = {
       todo: [],
       values: '',
-      setValues: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,8 +25,28 @@ class TaskInput extends React.Component {
   }
   
   handleSubmit(e) {
-    console.log(this.state.values);
     e.preventDefault();
+    
+    if(this.state.values !== '') {
+      this.state.todo.push({
+        item: this.state.values
+      });
+      this.setState({
+        todo: this.state.todo
+      });
+      
+      // リセット
+      this.state.values = ''
+    }
+  }
+  
+  delList(i) {
+    this.state.todo.splice(i, 1);
+    // 保存
+    this.setState({
+      todo : this.state.todo
+    });
+    console.log(1);
   }
   
   render() {
@@ -46,29 +61,11 @@ class TaskInput extends React.Component {
           </Button>
         </form>
         <FormHelperText id="my-helper-text">Manage tasks to increase efficiency.</FormHelperText>
+        <ListHead />
+        <TaskList lists={this.state.todo}/>
       </FormControl>
     );
   }
 }
 
 export default TaskInput;
-
-// 
-// const [values, setValues] = React.useState({
-//     name: '',
-//   });
-// const handleChange = name => event => {
-//     setValues({ ...values, [name]: event.target.value });
-//   };
-// 
-//   return (
-//     <form noValidate autoComplete="off">
-//       <TextField
-//         id="standard-name"
-//         label="Name"
-//         value={values.name}
-//         onChange={handleChange('name')}
-//         margin="normal"
-//       />
-//     </form>
-//   );
