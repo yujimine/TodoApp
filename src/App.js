@@ -1,4 +1,6 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import { FormControl, InputLabel, Input, FormHelperText} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import TaskInput from './components/TaskInput';

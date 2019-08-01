@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { FormControl, InputLabel, Input, FormHelperText, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
@@ -15,6 +17,7 @@ class TaskInput extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.delList = this.delList.bind(this);
   }
   
   handleChange(e){
@@ -42,11 +45,11 @@ class TaskInput extends React.Component {
   
   delList(i) {
     this.state.todo.splice(i, 1);
-    // 保存
+    
     this.setState({
       todo : this.state.todo
     });
-    console.log(1);
+    console.log(this.state.todo);
   }
   
   render() {
@@ -62,10 +65,11 @@ class TaskInput extends React.Component {
         </form>
         <FormHelperText id="my-helper-text">Manage tasks to increase efficiency.</FormHelperText>
         <ListHead />
-        <TaskList lists={this.state.todo}/>
+        <TaskList lists={this.state.todo} todoRemove={this.delList}/>
       </FormControl>
     );
   }
 }
+
 
 export default TaskInput;
