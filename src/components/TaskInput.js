@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Field, reduxForm} from 'redux-form';
 import { FormControl, InputLabel, Input, FormHelperText, TextField } from '@material-ui/core';
 import TaskList from './TaskList';
 import ListHead from './ListHead';
@@ -48,7 +49,6 @@ class TaskInput extends React.Component {
     this.setState({
       todo : this.state.todo
     });
-    console.log(this.state.todo);
   }
   
   render() {
