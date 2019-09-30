@@ -12,11 +12,15 @@ class TaskList extends React.Component {
   render() {
     return (
       <ul style={{textAlign: 'left', marginLeft: '-20px'}}>
-        {this.props.lists.map((todo, i) =>
-          <li key={i} style={{margin: '5px 0'}}>{todo.item}
-            <CheckCircle style={{height: '20px', marginLeft: '5px', marginRight: '20px', float: 'right'}} onClick={() => this.props.todoRemove(i)} />
-          </li>
-        )}
+        {this.props.lists.length > 0 ? 
+          (this.props.lists.map((todo, i) =>
+            <li key={i} style={{margin: '5px 0'}}>{todo.item}
+              <CheckCircle style={{height: '20px', marginLeft: '5px', marginRight: '20px', float: 'right'}} onClick={() => this.props.todoRemove(i)} />
+            </li>
+          )) : (
+            <span>お疲れ様でした！<br />タスク完了です！！</span>
+          )
+        }
       </ul>
     );
   }
