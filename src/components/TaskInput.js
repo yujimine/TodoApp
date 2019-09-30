@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormControl, InputLabel, Input, FormHelperText, TextField } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import TaskList from './TaskList';
 import ListHead from './ListHead';
+import Button from './atom/Button';
 
 
 class TaskInput extends React.Component {
@@ -58,10 +57,7 @@ class TaskInput extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <InputLabel htmlFor="my-input" >Add your task</InputLabel>
           <Input id="my-input" aria-describedby="my-helper-text" value={this.state.values} onChange={this.handleChange}/>
-          <Button variant="contained" size="small" style={{marginLeft: '10px', marginBottom: '5px'}} type="submit">
-            <AddIcon />
-            add
-          </Button>
+          <Button/>
         </form>
         <FormHelperText id="my-helper-text">Manage tasks to increase efficiency.</FormHelperText>
         <ListHead />
